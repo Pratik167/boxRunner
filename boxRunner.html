@@ -1,0 +1,138 @@
+<html>
+<head>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 1px;
+            padding: 0;
+        }
+        body{
+            background-color: grey;
+            text-align: center;
+            border: 10px solid;
+        }
+        #box{
+            position: absolute;
+            background-color: red;
+            width: 50px;
+            aspect-ratio: 1/1;
+            top:90;
+            left:90;
+        }
+        #playarea{
+            width: 1600px;
+            height: 870px;
+            border: 2px solid;
+            margin-left: 65px;
+        }
+        #Speed{
+            width: 150px;
+            height: 40px;
+            position: absolute;
+            border: 2px solid;
+            top:70px;
+            left:1700;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BoxRunner</h1>
+    <p>It is what it is</p>
+    <div id="box"></div>
+    <div id="playarea"></div>
+    <div id="Speed">
+        
+        
+    </div>
+    <script>
+        const box=document.getElementById("box");
+        let t=90;
+        let d=90;
+        let l=90;
+        let r=90;
+        const playarea=document.getElementById("playarea");
+        const speed=document.getElementById("Speed");
+        //speed.textContent="Speed="+10+"px";
+        function moveBox(event)
+        {
+            let speed=10;
+            if(event.key=="w")
+        {
+            if(t<100)
+        {
+            t=120;
+            d=120;
+            playarea.style.borderColor= "red";
+        }
+        else{
+             t=t-speed;
+            d=d-speed;
+            box.style.top=t;
+            playarea.style.borderColor= "black";
+        }
+           
+        }
+        if(event.key=="s")
+        {
+            if(t>870)
+        {
+            d=850;
+            t=850;
+            playarea.style.borderColor= "red";
+        }
+            else{
+            d=d+speed;
+            t=t+speed;
+            box.style.top=d;
+            playarea.style.borderColor= "black";
+            }
+            
+        }
+        if(event.key=="a")
+        {
+            if(l<95)
+        {
+            l=110;
+            r=110;
+            playarea.style.borderColor= "red";
+        }
+            else{
+            l=l-speed;
+            r=r-speed;
+            box.style.left=l;
+            playarea.style.borderColor= "black";
+            }
+            
+        }if(event.key=="d")
+        {
+            if(r>1610)
+        {
+            r=1590;
+            l=1590; 
+            playarea.style.borderColor= "red";
+        }
+            else{
+            r=r+speed;
+            l=l+speed;
+            box.style.left=r;
+            playarea.style.borderColor= "black";
+            }   
+        }  
+        if(event.key=="i")
+        {
+            let speed=20;
+            Speed.textContent="Speed="+speed+"px"; 
+        }
+        }
+        document.body.addEventListener("keydown",moveBox);
+        
+        // function boxSize(event)
+        // {
+        //     let w=100;
+        //     box.style.width=w+10;
+        // }
+        // document.addEventListener("wheel",boxSize)
+    </script>
+</body>
+</html>
