@@ -13,9 +13,10 @@
         }
         #box{
             position: absolute;
-            background-color: red;
+            /* background-color: red; */
             width: 50px;
-            aspect-ratio: 1/1;
+            height: 50px;
+            
             top:90;
             left:90;
         }
@@ -34,29 +35,74 @@
             left:1700;
             font-size: 30px;
         }
+        #controls{
+            width: 150px;
+            height: 100px;
+            position: absolute;
+            border: 2px solid;
+            top:120px;
+            left:1700;
+            font-size: 30px;
+        }
+        .wasd{
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+        .speeed{
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: fill;
+        }
     </style>
 </head>
 <body>
     <h1>BoxRunner</h1>
     <p>It is what it is</p>
-    <div id="box"></div>
+    <div id="box">
+        <img class="speeed"src="ishowspeed.gif">
+    </div>
     <div id="playarea"></div>
-    <div id="Speed">
-        
-        
+    <div id="Speed"></div>
+    <div id="controls">
+        <img class="wasd"src="https://static.vecteezy.com/system/resources/previews/009/282/768/non_2x/wasd-line-icon-free-vector.jpg">
     </div>
     <script>
         const box=document.getElementById("box");
+        
         let t=90;
         let d=90;
         let l=90;
         let r=90;
         const playarea=document.getElementById("playarea");
         const speed=document.getElementById("Speed");
-        //speed.textContent="Speed="+10+"px";
+        let fast=10;
+        let sizes=50;
+        speed.textContent="Speed="+fast+"px";
+
         function moveBox(event)
         {
-            let speed=10;
+            if(event.key=="i")
+        {
+            fast=fast+10;
+            
+            if(fast>=50)
+        {
+            fast=50;
+        }
+        speed.textContent="Speed="+fast+"px";
+        }
+        if(event.key=="k")
+        {
+            fast=fast-10;
+            
+            if(fast<=10)
+        {
+            fast=10;
+        }
+        speed.textContent="Speed="+fast+"px";
+        }
+        
             if(event.key=="w")
         {
             if(t<100)
@@ -66,8 +112,8 @@
             playarea.style.borderColor= "red";
         }
         else{
-             t=t-speed;
-            d=d-speed;
+             t=t-fast;
+            d=d-fast;
             box.style.top=t;
             playarea.style.borderColor= "black";
         }
@@ -82,8 +128,8 @@
             playarea.style.borderColor= "red";
         }
             else{
-            d=d+speed;
-            t=t+speed;
+            d=d+fast;
+            t=t+fast;
             box.style.top=d;
             playarea.style.borderColor= "black";
             }
@@ -93,13 +139,13 @@
         {
             if(l<95)
         {
-            l=110;
-            r=110;
+            l=115;
+            r=115;
             playarea.style.borderColor= "red";
         }
             else{
-            l=l-speed;
-            r=r-speed;
+            l=l-fast;
+            r=r-fast;
             box.style.left=l;
             playarea.style.borderColor= "black";
             }
@@ -113,18 +159,41 @@
             playarea.style.borderColor= "red";
         }
             else{
-            r=r+speed;
-            l=l+speed;
+            r=r+fast;
+            l=l+fast;
             box.style.left=r;
             playarea.style.borderColor= "black";
             }   
         }  
-        if(event.key=="i")
+        
+        }
+        function incsize(event)
         {
-            let speed=20;
-            Speed.textContent="Speed="+speed+"px"; 
+            if(sizes<500)
+        {
+            sizes=sizes+10;
+            box.style.width=sizes+"px";
         }
+        else
+        {
+            sizes=50;
         }
+            
+        }
+        box.addEventListener("mouseover",incsize);
+        function decsize(event)
+        {
+            if(sizes>50)
+        {
+           sizes=sizes-10;
+            box.style.width=sizes+"px"; 
+        }
+        else{
+            sizes=50;
+        }
+            
+        }
+        box.addEventListener("click",decsize);
         document.body.addEventListener("keydown",moveBox);
         
         // function boxSize(event)
