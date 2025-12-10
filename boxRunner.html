@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Document</title>
+    <title>BoxRunner</title>
     <style>
         *{
             margin: 1px;
@@ -21,8 +21,8 @@
             left:90;
         }
         #playarea{
-            width: 1600px;
-            height: 870px;
+            width: 1000px;
+            height: 500px;
             border: 2px solid;
             margin-left: 65px;
         }
@@ -31,17 +31,17 @@
             height: 40px;
             position: absolute;
             border: 2px solid;
-            top:70px;
-            left:1700;
+            top:20px;
+            left:1000;
             font-size: 30px;
         }
         #controls{
-            width: 150px;
-            height: 100px;
+            width: 80px;
+            height: 70px;
             position: absolute;
             border: 2px solid;
             top:120px;
-            left:1700;
+            left: 1085px;
             font-size: 30px;
         }
         .wasd{
@@ -121,10 +121,10 @@
         }
         if(event.key=="s")
         {
-            if(t>870)
+            if(t>500)
         {
-            d=850;
-            t=850;
+            d=480;
+            t=480;
             playarea.style.borderColor= "red";
         }
             else{
@@ -152,10 +152,10 @@
             
         }if(event.key=="d")
         {
-            if(r>1610)
+            if(r>1000)
         {
-            r=1590;
-            l=1590; 
+            r=980;
+            l=980; 
             playarea.style.borderColor= "red";
         }
             else{
@@ -169,7 +169,7 @@
         }
         function incsize(event)
         {
-            if(sizes<500)
+            if(sizes<300)
         {
             sizes=sizes+10;
             box.style.width=sizes+"px";
@@ -196,6 +196,35 @@
         box.addEventListener("click",decsize);
         document.body.addEventListener("keydown",moveBox);
         
+
+        function handleMouse(event){
+        const div1 = document.createElement("div1");
+        
+        
+
+        div1.style.position="absolute";
+        div1.style.borderRadius=1000+"px";
+
+
+        console.log("mouse clicked");
+        console.log("X:"+event.x);
+        console.log("Y:"+event.y); 
+
+       div1.setAttribute("src","https://cdn-icons-png.flaticon.com/512/217/217853.png"); 
+        div1.style.width=25+"px";
+        div1.style.height=25+"px";
+        
+        // div1.style.left=`${event.x-50}px`;
+        // div1.style.top=event.y-50+"px";
+        
+        div1.style.left=event.x+"px";
+        div1.style.top=event.y+"px";
+
+        div1.style.backgroundColor="yellow";
+
+        document.body.append(div1);
+        }
+        document.addEventListener("dblclick",handleMouse);
         // function boxSize(event)
         // {
         //     let w=100;
